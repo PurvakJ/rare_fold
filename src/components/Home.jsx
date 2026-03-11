@@ -36,7 +36,7 @@ function Home() {
       caption: 'Designer Collection'
     },
     {
-      url: 'https://images.unsplash.com/photo-1483985988355-763728e93b5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCftY7vo0xR1YjorUQPvtas2gyTl7Gmyu94w&s',
       alt: 'Shopping lifestyle',
       caption: 'Shop the Look'
     },
@@ -75,7 +75,7 @@ function Home() {
   // Three featured fashion images with captions at different positions
   const featuredImages = [
     {
-      url: 'https://images.unsplash.com/photo-1483985988355-763728e93b5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKgYkJ25grAGjTcVRyxzb-kW9dzXMahVp8fg&s',
       alt: 'Stylish outfit',
       caption: 'Street Style',
       position: 'left'
