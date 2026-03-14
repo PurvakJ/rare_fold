@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { apiGet } from '../utils/api';
+import { apiGet, apiPost } from '../utils/api';
 import toast from 'react-hot-toast';
+import { useForm } from 'react-hook-form';
+import { FaStar, FaRegStar } from 'react-icons/fa';
 import './Home.css'; // Make sure to import the CSS
 
 function Home() {
@@ -12,6 +14,20 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
+  
+  // Review form states
+  const [submitting, setSubmitting] = useState(false);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [selectedRating, setSelectedRating] = useState(0);
+  const { register, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm();
+
+  const watchRating = watch('rating');
+
+  useEffect(() => {
+    if (watchRating) {
+      setSelectedRating(parseInt(watchRating));
+    }
+  }, [watchRating]);
 
   // High-quality fashion images from Unsplash
   const carouselImages = [
@@ -141,6 +157,29 @@ function Home() {
       toast.error('Failed to load data');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleRatingClick = (rating) => {
+    setSelectedRating(rating);
+    setValue('rating', rating.toString());
+  };
+
+  const onSubmit = async (formData) => {
+    try {
+      setSubmitting(true);
+      await apiPost({
+        action: 'addReview',
+        ...formData,
+        rating: parseInt(formData.rating)
+      });
+      toast.success('Review submitted successfully! Thank you for your feedback.');
+      reset();
+      setSelectedRating(0);
+    } catch (error) {
+      toast.error('Failed to submit review');
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -328,6 +367,110 @@ function Home() {
                 Subscribe Now
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Review Form Section */}
+      <section className="section review-form-section">
+        <div className="container">
+          <div className="review-form-header">
+            <h2 className="section-title">Share Your Experience</h2>
+            <p className="section-subtitle">
+              We value your feedback! Let us know about your experience with theRareFold.
+            </p>
+          </div>
+
+          <div className="review-form-container">
+            <form onSubmit={handleSubmit(onSubmit)} className="review-form">
+              {/* Hidden input for rating */}
+              <input 
+                type="hidden" 
+                {...register('rating', { required: 'Please select a rating' })} 
+              />
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label">Your Name *</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your full name"
+                    className={`form-input ${errors.name ? 'error' : ''}`}
+                    {...register('name', { required: 'Name is required' })}
+                  />
+                  {errors.name && <span className="error-message">{errors.name.message}</span>}
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Your Email *</label>
+                  <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    className={`form-input ${errors.email ? 'error' : ''}`}
+                    {...register('email', { 
+                      required: 'Email is required',
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: 'Please enter a valid email address'
+                      }
+                    })}
+                  />
+                  {errors.email && <span className="error-message">{errors.email.message}</span>}
+                </div>
+              </div>
+
+              {/* Single Line Star Rating */}
+              <div className="form-group">
+                <label className="form-label">Your Rating *</label>
+                <div className="single-line-rating">
+                  <div className="rating-stars-container">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span
+                        key={star}
+                        className={`rating-star ${star <= (hoverRating || selectedRating) ? 'active' : ''}`}
+                        onClick={() => handleRatingClick(star)}
+                        onMouseEnter={() => setHoverRating(star)}
+                        onMouseLeave={() => setHoverRating(0)}
+                      >
+                        {star <= (hoverRating || selectedRating) ? <FaStar /> : <FaRegStar />}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                {errors.rating && <span className="error-message">{errors.rating.message}</span>}
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Your Review *</label>
+                <textarea
+                  rows="5"
+                  placeholder="Tell us about your experience with our products and service..."
+                  className={`form-textarea ${errors.description ? 'error' : ''}`}
+                  {...register('description', { 
+                    required: 'Review is required',
+                    minLength: {
+                      value: 20,
+                      message: 'Please write at least 20 characters'
+                    },
+                    maxLength: {
+                      value: 1000,
+                      message: 'Review cannot exceed 1000 characters'
+                    }
+                  })}
+                />
+                {errors.description && <span className="error-message">{errors.description.message}</span>}
+              </div>
+
+              <div className="form-actions">
+                <button 
+                  type="submit" 
+                  className="button submit-button"
+                  disabled={submitting}
+                >
+                  {submitting ? 'Submitting...' : 'Submit Review'}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
