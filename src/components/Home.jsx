@@ -208,7 +208,7 @@ function Home() {
                 <h2>{image.caption}</h2>
                 <p>Discover the latest trends and timeless styles at theRareFold</p>
                 <a 
-                  href="https://therarefoldinshop.vercel.app/" 
+                  href="https://rarefold.shop/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="button carousel-button"
