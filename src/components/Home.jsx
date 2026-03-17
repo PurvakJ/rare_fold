@@ -32,32 +32,32 @@ function Home() {
   // High-quality fashion images from Unsplash
   const carouselImages = [
     {
-      url: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: 'https://i.postimg.cc/02vwHDM7/Whats_App_Image_2026_03_16_at_17_04_08.jpg',
       alt: 'Street style fashion',
       caption: 'Urban Elegance'
     },
     {
-      url: 'https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80',
+      url: 'https://i.postimg.cc/X7WCDdGL/Whats_App_Image_2026_03_16_at_17_08_01.jpg',
       alt: 'Luxury fashion model',
       caption: 'Luxury Redefined'
     },
     {
-      url: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: 'https://i.postimg.cc/PrHwFYpZ/Whats_App_Image_2026_03_16_at_17_08_28.jpg',
       alt: 'Casual wear collection',
       caption: 'Casual Comfort'
     },
     {
-      url: 'https://images.unsplash.com/photo-1467043237213-65f2da53396f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: 'https://i.postimg.cc/rFTrYx0G/Whats_App_Image_2026_03_16_at_17_09_11.jpg',
       alt: 'Designer outfit',
       caption: 'Designer Collection'
     },
     {
-      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCftY7vo0xR1YjorUQPvtas2gyTl7Gmyu94w&s',
+      url: 'https://i.postimg.cc/rFTrYx0J/Whats_App_Image_2026_03_16_at_17_09_54.jpg',
       alt: 'Shopping lifestyle',
       caption: 'Shop the Look'
     },
     {
-      url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: 'https://i.postimg.cc/X7WCDdGH/Whats_App_Image_2026_03_16_at_17_09_55.jpg',
       alt: 'Clothing rack',
       caption: 'New Arrivals'
     },
@@ -91,19 +91,19 @@ function Home() {
   // Three featured fashion images with captions at different positions
   const featuredImages = [
     {
-      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKgYkJ25grAGjTcVRyxzb-kW9dzXMahVp8fg&s',
+      url: 'https://i.postimg.cc/Pxfmvht4/Whats_App_Image_2026_03_16_at_17_03_00.jpg',
       alt: 'Stylish outfit',
       caption: 'Street Style',
       position: 'left'
     },
     {
-      url: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: 'https://i.postimg.cc/26j4Lmzh/Whats_App_Image_2026_03_16_at_17_02_29.jpg',
       alt: 'Casual elegance',
       caption: 'Casual Chic',
       position: 'center'
     },
     {
-      url: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: 'https://i.postimg.cc/V6sj01YX/Whats_App_Image_2026_03_16_at_17_03_00_(1).jpg',
       alt: 'Even wear',
       caption: 'Evening Glam',
       position: 'right'
